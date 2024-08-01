@@ -1,0 +1,16 @@
+addi $zero, $t5, 10000;
+addi $zero, $t6, 516;
+sb $zero, 512 ($t5);
+sh $zero, 516 ($t5);
+addi $zero, $s3, 5000;
+
+//testing loop
+loop: add $t4, $t5, $t4;
+//bne $t1, $zero, loop;
+addi $t6, $t6, 4;
+sw $t6, 0 ($t4); 
+addi $zero, $s2, 20;
+sub $s3, $s2, $s3;
+
+j loop;
+jr $ra;

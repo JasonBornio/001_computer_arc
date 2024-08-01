@@ -1,0 +1,57 @@
+r-type: add $zero, $v0, $v1;
+addu $zero, $a0, $a1;
+and $v1, $a1, $t0;
+nor $v1, $a1, $t1;
+or $v1, $a1, $t2;
+slt $t1, $a1, $t3;
+sltu $t1, $a1, $t4;
+sub $v1, $a1, $t5;
+subu $v1, $a1, $t6;
+xor $v1, $a1, $t7;
+
+imm: addi $zero, $v0, 32767;
+addiu $zero, $a0, 30350;
+addiu $zero, $t8, 6;
+andi $v0, $s0, 7950;
+lui $zero, $s1, 32767;
+ori $s0, $s2, 7950;
+slti $zero, $s3, 30000;
+sltiu $zero, $s4, 30000;
+xori $s0, $s5, 32767;
+
+shift: sll $v0, $s6, 4;
+sllv $t8, $v0, $s7;
+sra $v0, $s8, 4;
+srav $t8, $v0, $k0;
+srl $v0, $k1, 4;
+srlv $t8, $v0, $gp;
+
+branch: beq $v1, $v0, mem;
+bgez $v1, $v0, r-type;
+bgtzal $v1, $v0, r-type;
+bgtz $v1, $v0, jump;
+blez $v1, $v0, jump;
+bltz $v1, $v0, jump;
+bltzal $v1, $v0, jump;
+bne $v1, $zero, mem;
+
+//jump: j r-type;
+jump: jal r-type;
+jalr $t8, $zero, $a2;
+jr $t8, $zero, $a2;
+
+//other: break
+//mfc0
+//mtc0
+//syscal
+
+mem: sb $zero, 512 ($v0);
+sh $zero, 516 ($v1);
+sw $zero, 520 ($a1);
+lb $zero, 512 ($at);
+lbu $zero, 516 ($t9);
+lh $zero, 520 ($sp);
+lhu $zero, 512 ($a2);
+lw $zero, 516 ($a3);
+
+//data: $zero $at $v0 $v1 $a0 $a1 $a3 $t0 $t1 $t2 $t3 $t4 $t5 $t6 $t7 $s0 $s1 $s2 $s3 $s4 $s5 $s6 $s7 $t8 $t9 $k0 $k1 $gp $sp $s8 $ra add addu and nor or slt stlu sub subu xor addi addiu andi lui ori slti stliu xori sll sllv sra srav srl srlv beq begez bgtzal bgtz blez bltz bltzal bne j jal jalr jalr break mfc0 mtc0 syscal lb lbu lh lhu lw sb sh sw

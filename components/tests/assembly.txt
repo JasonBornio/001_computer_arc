@@ -1,0 +1,31 @@
+addi $zero, $t5, 1;
+addi $zero, $t6, 516;
+addi $zero $s1, 10;
+sb $zero, 512 ($t6);
+sh $zero, 516 ($t6);
+addi $zero, $s3, 5000;
+addi $zero, $s0, 2;
+addi $zero, $k1, 4;
+
+//testing loop
+loop2: add $t4, $t5, $t4;
+beq $t4, $s1, loop1;
+//sllv $s0, $t6, $t6;
+addi $t6, $t6, 4;
+sw $t6, 0 ($k1); 
+sllv $s0, $k1, $k1;
+addi $zero, $s2, 20;
+sub $s3, $s2, $s3;
+
+j loop2;
+jr $ra;
+
+
+load: lb $zero, 512 ($k0);
+j end;
+
+loop1: add $t4, $t5, $t3;
+addi $t6, $t6, 4;
+beq $t4, $s1, load;
+
+end:;
